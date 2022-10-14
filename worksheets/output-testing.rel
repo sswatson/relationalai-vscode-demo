@@ -1,0 +1,30 @@
+
+// table output
+def config:data = """
+a,b,c
+1,2,3
+4,5,6
+"""
+def output = table[load_csv[config]]
+
+// graphviz
+module graph
+    def node = {"A"; "B"; "C"; "D"}
+    def edge = {("A", "B") ; ("B", "C"); ("C", "D"); ("A", "D")}
+end
+def output = graphviz[graph]
+
+// vega-lite
+def in_data:year = {(1, 2018); (2, 2019); (3, 2020); (4, 2021)}
+def in_data:sales = {(1, 100); (2, 120); (3, 65); (4, 180)}
+def output = vegalite:plot[
+    vegalite:bar[:year, :sales, {:data, in_data}]
+]
+
+// markdown 
+help:range
+
+//update
+def insert:base_rel:first_hundred = {
+    range[1, 100, 1]
+}

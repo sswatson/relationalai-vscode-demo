@@ -1,0 +1,44 @@
+//install
+def same(field, id1, id2) = {
+  transaction[field, id1] = transaction[field, id2] 
+}
+
+def covered_by(id, t_id) {
+    travel:card(t_id, transaction:card[id])
+    and travel:to(t_id, transaction:vendor.vendor:loc[id]) 
+    and travel:start[t_id] <= transaction:date[id]
+    and travel:ends[t_id] >= transaction:date[id]  
+}
+
+def wrong_country(id) =
+	transaction:card.card:loc[id] != transaction:vendor.vendor:loc[id]
+    and not covered_by(id, _)
+
+def earlier_than(id, id2) = 
+  transaction:date[id2] < transaction:date[id]
+  or (same:date(id, id2) and id2 < id)
+
+def new_vendor(id) = {
+    transaction(_, id, _)
+    and not exists( id2: 
+      same:card(id, id2)
+      and id.earlier_than(id2)
+      and same:vendor(id, id2)
+    )
+}
+
+def new_vendors_for_day[card, date] = {
+    count[id: 
+      transaction:card(id, card) 
+        and transaction:date(id, date)
+        and new_vendor(id)
+    ]
+}
+
+def two_vendors_same_day(id) {
+    new_vendor(id)
+    and new_vendors_for_day[
+          transaction:card[id], 
+          transaction:date[id]
+        ] >= 2
+}    

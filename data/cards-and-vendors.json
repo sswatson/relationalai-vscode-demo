@@ -1,0 +1,44 @@
+[
+  {
+    "card": "1",
+    "vendor": "v5",
+    "date": "2022-02-15",
+    "amount": 5
+  },
+  {
+    "card": "2",
+    "vendor": "v1",
+    "date": "2022-02-15",
+    "amount": 29
+  },
+  {
+    "card": "5",
+    "vendor": "v6",
+    "date": "2022-02-10",
+    "amount": 40
+  },
+  {
+    "card": "3",
+    "vendor": "v3",
+    "date": "2022-02-15",
+    "amount": 42
+  },
+  {
+    "card": "3",
+    "vendor": "v6",
+    "date": "2022-02-10",
+    "amount": 18
+  },
+  {
+    "card": "4",
+    "vendor": "v6",
+    "date": "2022-02-10",
+    "amount": 78
+  },
+  {
+    "card": "5",
+    "vendor": "v1",
+    "date": "2022-02-13",
+    "amount": 59
+  }
+]

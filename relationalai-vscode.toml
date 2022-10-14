@@ -1,0 +1,5 @@
+profile = "hello-rel"
+database = "example"
+engine = "hello-rel"
+model-directory = "models"
+worksheet-directory = "worksheets"
